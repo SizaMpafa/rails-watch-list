@@ -1,3 +1,32 @@
 <h1>Lists#show</h1>
 <p>Find me in app/views/lists/show.html.erb</p>
-<%= link_to "back to lists", lists_path %>
+<div class="container">
+
+  <h2>My <span><%= @list.bookmarks.count %></span><%= @list.bookmarks.count == 1? "bookmark" : "bookmarks" %></h2>
+
+<ul>
+
+  <% @list.bookmarks.each do |bookmark|%>
+    <li>
+      <%= link_to "delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+        <%= image_tag(bookmark.movie.poster_url, class: 'img-fluid rounded', style: 'width: 50px; height: 50px;') %>
+        <hr>
+          <%= bookmark.comment  %>
+            <hr>
+              <%= bookmark.movie.title%> <%= bookmark.movie.rating %>
+              <hr>
+  <%= bookmark.movie.overview %>
+  <hr>
+</li>
+<% end %>
+</ul>
+<hr>
+<h2>Bookmark</h2>
+<hr>
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.association :movie %>
+  <%= f.input :comment %>
+  <%= f.submit %>
+<% end %>
+</div>
+<%= link_to "back to lists", root_path %>
