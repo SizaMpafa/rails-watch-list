@@ -1,0 +1,38 @@
+.list{
+  top: 20px;
+}
+
+.each-list {
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.each-list h2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  font-size: small;
+  color: black;
+}
+
+.fixed-top i {
+  color: #d52a20;
+}
+
+.fixed-top {
+  position: fixed;
+  top: 18px;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}

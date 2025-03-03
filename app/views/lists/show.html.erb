@@ -1,32 +1,55 @@
-<h1>Lists#show</h1>
-<p>Find me in app/views/lists/show.html.erb</p>
-<div class="container">
+    <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+      <div class="container-fluid">
+        <%= link_to "#", class: "navbar-brand" do %>
+          <%= image_tag "movies-icon-png-29.jpg" %>
+        <% end %>
 
-  <h2>My <span><%= @list.bookmarks.count %></span><%= @list.bookmarks.count == 1? "bookmark" : "bookmarks" %></h2>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-<ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto">
+            <%# if user_signed_in? %>
+              <li class="nav-item active">
+              <%= link_to "All Lists",  "#{root_path}#cards", class: "nav-link", data: { toggle: "collapse" }%>
+              </li>
+              <li class="nav-item">
+                <%= link_to "New List", new_list_path, class: "nav-link" %>
+              </li>
+            <%# else %>
+              <!--li class="nav-item"-->
+                <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
+              <!--/li-->
+            <%# end %>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-  <% @list.bookmarks.each do |bookmark|%>
-    <li>
-      <%= link_to "delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-        <%= image_tag(bookmark.movie.poster_url, class: 'img-fluid rounded', style: 'width: 50px; height: 50px;') %>
-        <hr>
-          <%= bookmark.comment  %>
-            <hr>
-              <%= bookmark.movie.title%> <%= bookmark.movie.rating %>
-              <hr>
-  <%= bookmark.movie.overview %>
-  <hr>
-</li>
-<% end %>
-</ul>
+
+  <div class="list">
+    <div class="each-list" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path 'sizazzzzzz.jpg' %>)">
+      <h2><span><%= @list.bookmarks.count %></span> <%= @list.bookmarks.count == 1? "movie" : "movies" %></h2>
+      <%= @list.name %>
+    </div>
+  </div>
+
+
+
+<div class="container" data-controller="toggle">
+
+
+
 <hr>
-<h2>Bookmark</h2>
-<hr>
-<%= simple_form_for [@list, @bookmark] do |f| %>
-  <%= f.association :movie %>
-  <%= f.input :comment %>
-  <%= f.submit %>
-<% end %>
+<%= link_to "Add a movie", "#form", data: { action: "click->toggle#show" }, class: "btn btn-primary" %>
+
+<div id="form" class="collapse" data-toggle-target="form">
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.association :movie %>
+    <%= f.input :comment %>
+    <%= f.submit %>
+  <% end %>
 </div>
-<%= link_to "back to lists", root_path %>
+
+</div>

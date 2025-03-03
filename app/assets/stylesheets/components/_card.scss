@@ -5,6 +5,10 @@
   grid-gap: 16px;
 }
 
+.cards a {
+  text-decoration: none;
+}
+
 .card-category {
   background-size: cover;
   background-position: center;
@@ -20,6 +24,5 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 .card-category a {
-  text-decoration: none !important;
   color: white !important;
 }
